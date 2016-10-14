@@ -4,10 +4,13 @@ Rails.application.routes.draw do
 
   resources :products, only: [:index, :show]
   resources :categories, only: [:show]
-  resources :users, only: [:new, :create]
 
-  get '/login' => 'users#login'
-  get '/logout' => 'users#logout'
+  get '/users' => 'users#new'
+  post '/users' => 'users#create'
+
+  get '/login' => 'sessions#new'
+  post '/login' => 'sessions#new'
+  get '/logout' => 'sessions#destroy'
 
   resource :cart, only: [:show] do
     put    :add_item
