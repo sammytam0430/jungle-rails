@@ -28,6 +28,8 @@
       <div class="col-sm-8 reviews">
         <table class="table table-bordered">
           <thead>
+
+          <% if current_user %>
             <tr>
               <th colspan="3">
                 <%= form_for [@product, @review] do |form| %>
@@ -59,6 +61,9 @@
                 <% end %>
               </th>
             </tr>
+          <% else %>
+          <% end %>
+
           <% if @product.review.count === 0 %>
             <tr>
               <th>
