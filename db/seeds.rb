@@ -129,5 +129,37 @@ cat3.products.create!({
   price: 2_483.75
 })
 
+## USERS
+puts "Re-creating Users ..."
+
+User.destroy_all
+
+User.create!({
+  first_name: "Sammy",
+  last_name: "Tam",
+  email: "sammytam2005@hotmail.com",
+  password_digest: "$2a$10$fm/mhyRHNBTnPIJBie1e5OeDTvqZmFXm9KNikKtLYmXsu7pv1nvXO"
+})
+
+User.create!({
+  first_name: "Robot",
+  last_name: "One",
+  email: "r.one@jungle.com",
+  password_digest: "$2a$10$eAykOPjGqdbfnyi.nfOUJeHbjCwfzcKWPHoZTnYV6ui9x7DS2fBgK"
+  })
+
+User.create!({
+  first_name: "Robot",
+  last_name: "Two",
+  email: "r.two@jungle.com",
+  password_digest: "$2a$10$E6jVQZ9OZyQ4O21q4hafeufds8LRBhq0qZ6/0GWbP.GLRN0YtJZBi"
+  })
+  
+User.create!({
+  first_name: "Robot",
+  last_name: "Three",
+  email: "r.three@jungle.com",
+  password_digest: "$2a$10$234AWybyGOYZ0fDkzV3nAOENSib/ihk6f6VQpcgx3MfKFJoT07pA."
+  })
 
 puts "DONE!"
