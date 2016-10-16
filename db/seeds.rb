@@ -130,6 +130,7 @@ cat3.products.create!({
 })
 
 ## USERS
+
 puts "Re-creating Users ..."
 
 User.destroy_all
@@ -154,12 +155,22 @@ User.create!({
   email: "r.two@jungle.com",
   password_digest: "$2a$10$E6jVQZ9OZyQ4O21q4hafeufds8LRBhq0qZ6/0GWbP.GLRN0YtJZBi"
   })
-  
+
 User.create!({
   first_name: "Robot",
   last_name: "Three",
   email: "r.three@jungle.com",
   password_digest: "$2a$10$234AWybyGOYZ0fDkzV3nAOENSib/ihk6f6VQpcgx3MfKFJoT07pA."
+  })
+
+## REVIEWS
+
+puts "Re-creating Reviews ..."
+
+Review.destroy_all
+
+Reviews.create!({
+
   })
 
 puts "DONE!"
