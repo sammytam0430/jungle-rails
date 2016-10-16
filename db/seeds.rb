@@ -147,21 +147,21 @@ User.create!({
   last_name: "One",
   email: "r.one@jungle.com",
   password_digest: "$2a$10$eAykOPjGqdbfnyi.nfOUJeHbjCwfzcKWPHoZTnYV6ui9x7DS2fBgK"
-  })
+})
 
 User.create!({
   first_name: "Robot",
   last_name: "Two",
   email: "r.two@jungle.com",
   password_digest: "$2a$10$E6jVQZ9OZyQ4O21q4hafeufds8LRBhq0qZ6/0GWbP.GLRN0YtJZBi"
-  })
+})
 
 User.create!({
   first_name: "Robot",
   last_name: "Three",
   email: "r.three@jungle.com",
   password_digest: "$2a$10$234AWybyGOYZ0fDkzV3nAOENSib/ihk6f6VQpcgx3MfKFJoT07pA."
-  })
+})
 
 ## REVIEWS
 
@@ -169,8 +169,32 @@ puts "Re-creating Reviews ..."
 
 Review.destroy_all
 
-Reviews.create!({
+Review.create!({
+  product_id: 12,
+  user_id: 1,
+  description: Faker::Hipster.sentence,
+  rating: 5
+})
 
-  })
+Review.create!({
+  product_id: 12,
+  user_id: 3,
+  description: Faker::Hipster.sentence,
+  rating: 4
+})
+
+Review.create!({
+  product_id: 12,
+  user_id: 2,
+  description: Faker::Hipster.sentence,
+  rating: 4
+})
+
+Review.create!({
+  product_id: 12,
+  user_id: 4,
+  description: Faker::Hipster.sentence,
+  rating: 3
+})
 
 puts "DONE!"
