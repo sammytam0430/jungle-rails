@@ -63,7 +63,7 @@
           </thead>
           <% end %>
           <tbody>
-            <% @product.review.each do |review| %>
+            <% @product.review.order(created_at: :desc).each do |review| %>
               <%= render 'review', review: review %>
             <% end %>
           </tbody>
