@@ -44,7 +44,7 @@
           <li><%= link_to 'Logout', [:logout] %></li>
         <% else %>
           <li><%= link_to 'Login', [:login] %></li>
-          <li><%= link_to 'Register', [:users] %></li>
+          <li><%= link_to 'Register', [:new, :user] %></li>
         <% end %>
         <li>
           <%= link_to cart_path do %>

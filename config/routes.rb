@@ -5,11 +5,10 @@ Rails.application.routes.draw do
   resources :products, only: [:index, :show] do
     resources :reviews, only: [:create]
   end
-  
+
   resources :categories, only: [:show]
 
-  get '/users' => 'users#new'
-  post '/users' => 'users#create'
+  resources :users, only: [:new, :create]
 
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
