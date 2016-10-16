@@ -24,25 +24,41 @@
           <dd><%= @product.price %></dd>
         </dl>
       </div>
-    </div>
 
-    <div class="panel panel-default reviews">
-      <table class="table table-bordered">
-        <thead>
-          <tr>
-            <th>User</th>
-            <th>Review</th>
-            <th>Rating</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @product.review.each do |review| %>
-            <%= render 'review', review: review %>
+      <div class="col-sm-8 reviews">
+        <table class="table table-bordered">
+          <% if @product.review.count === 0 %>
+            <thead>
+              <tr>
+                <th>
+                  <h4>No review has been submitted by user</h4>
+                </th>
+              </tr>
+            </thead>
+          <% else %>
+            <thead>
+              <tr>
+                <th>
+                  <h4>User</h4>
+                </th>
+                <th>
+                  <h4>Review</h4>
+                </th>
+                <th>
+                  <h4>Rating</h4>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @product.review.each do |review| %>
+                <%= render 'review', review: review %>
+              <% end %>
+            </tbody>
+            <tfoot>
+            </tfoot>
           <% end %>
-        </tbody>
-        <tfoot>
-        </tfoot>
-      </table>
+        </table>
+      </div>
     </div>
 
   </article>
