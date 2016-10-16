@@ -1,5 +1,7 @@
 class ReviewsController < ApplicationController
 
+  before_filter :authorize
+
   def create
     @product = Product.find(params[:product_id])
     @review = Review.new(review_params)
@@ -14,9 +16,11 @@ class ReviewsController < ApplicationController
 
   private
 
-  # Never trust parameters from the scary internet, only allow the white list through.
   def review_params
-    params.require(:review).permit(:rating, :description)
+    params.require(:review).permit(
+      :rating,
+      :description
+    )
   end
 
 end

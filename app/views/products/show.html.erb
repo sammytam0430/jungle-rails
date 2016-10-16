@@ -31,8 +31,20 @@
             <tr>
               <th colspan="3">
                 <%= form_for [@product, @review] do |form| %>
+
+                  <% if form.object.errors.any? %>
+                    <div class="alert alert-danger">
+                      <strong>The following errors prevented saving:</strong>
+                      <ul>
+                        <% form.object.errors.full_messages.each do |error| %>
+                          <li><%= error %></li>
+                        <% end %>
+                      </ul>
+                    </div>
+                  <% end %>
+
                   <div class="form-group">
-                    <%= form.label :review %>
+                    <%= form.label :description %>
                     <%= form.text_field :description, class: 'form-control', placeholder: 'Let us know what you think' %>
                   </div>
                   <div class="form-group">
@@ -64,7 +76,7 @@
           <% end %>
           <tbody>
             <% @product.review.order(created_at: :desc).each do |review| %>
-              <%= render 'review', review: review %>
+              <%= render 'reviews/review', review: review %>
             <% end %>
           </tbody>
           <tfoot>
