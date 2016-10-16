@@ -26,6 +26,25 @@
       </div>
     </div>
 
+    <div class="panel panel-default reviews">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>User</th>
+            <th>Review</th>
+            <th>Rating</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @product.review.each do |review| %>
+            <%= render 'review', review: review %>
+          <% end %>
+        </tbody>
+        <tfoot>
+        </tfoot>
+      </table>
+    </div>
+
   </article>
 
 </section>
