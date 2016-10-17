@@ -46,7 +46,7 @@
                   <% end %>
 
                   <div class="form-group">
-                    <%= form.label :description %>
+                    <%= form.label :review %>
                     <%= form.text_field :description, class: 'form-control', placeholder: 'Let us know what you think' %>
                   </div>
                   <div class="form-group">
@@ -61,7 +61,6 @@
                 <% end %>
               </th>
             </tr>
-          <% else %>
           <% end %>
 
           <% if @product.review.count === 0 %>
@@ -77,8 +76,8 @@
               <th>Reviews</th>
               <th>Ratings</th>
             </tr>
-          </thead>
           <% end %>
+          </thead>
           <tbody>
             <% @product.review.order(created_at: :desc).each do |review| %>
               <%= render 'reviews/review', review: review %>
