@@ -60,3 +60,8 @@ group :production do
 end
 
 gem "letter_opener", :group => :development
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.5'
+  # ...
+end
