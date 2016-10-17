@@ -29,54 +29,55 @@
         <table class="table table-bordered">
           <thead>
 
-          <% if current_user %>
-            <tr>
-              <th colspan="3">
-                <%= form_for [@product, @review] do |form| %>
+            <% if current_user %>
+              <tr>
+                <th colspan="3">
+                  <%= form_for [@product, @review] do |form| %>
 
-                  <% if form.object.errors.any? %>
-                    <div class="alert alert-danger">
-                      <strong>The following errors prevented saving:</strong>
-                      <ul>
-                        <% form.object.errors.full_messages.each do |error| %>
-                          <li><%= error %></li>
-                        <% end %>
-                      </ul>
-                    </div>
-                  <% end %>
-
-                  <div class="form-group">
-                    <%= form.label :review %>
-                    <%= form.text_field :description, class: 'form-control', placeholder: 'Let us know what you think' %>
-                  </div>
-                  <div class="form-group">
-                    <%= form.label :rating %>
-                    <%= form.select(:rating) do %>
-                      <% [5, 4, 3, 2, 1].each do |c| -%>
-                        <%= content_tag(:option, c, value: c) %>
-                      <% end %>
+                    <% if form.object.errors.any? %>
+                      <div class="alert alert-danger">
+                        <strong>The following errors prevented saving:</strong>
+                        <ul>
+                          <% form.object.errors.full_messages.each do |error| %>
+                            <li><%= error %></li>
+                          <% end %>
+                        </ul>
+                      </div>
                     <% end %>
-                  </div>
-                  <%= form.submit 'Submit', class: 'btn btn-primary' %>
-                <% end %>
-              </th>
-            </tr>
-          <% end %>
 
-          <% if @product.review.count === 0 %>
+                    <div class="form-group">
+                      <%= form.label :review %>
+                      <%= form.text_field :description, class: 'form-control', placeholder: 'Let us know what you think' %>
+                    </div>
+                    <div class="form-group">
+                      <%= form.label :rating %>
+                      <%= form.select(:rating) do %>
+                        <% [5, 4, 3, 2, 1].each do |c| -%>
+                          <%= content_tag(:option, c, value: c) %>
+                        <% end %>
+                      <% end %>
+                    </div>
+                    <%= form.submit 'Submit', class: 'btn btn-primary' %>
+                  <% end %>
+                </th>
+              </tr>
+            <% end %>
+
             <tr>
-              <th>
-                <h4>Be the first person to review this product!</h4>
-              </th>
+              <% if @product.review.count === 0 && current_user %>
+                <th>
+                  <h4>Be the first person to review this product!</h4>
+                </th>
+              <% elsif @product.review.count === 0 %>
+                <th>
+                  <h4>Please login to review this product!</h4>
+                </th>
+              <% else %>
+                <th>Users</th>
+                <th>Reviews</th>
+                <th>Ratings</th>
+              <% end %>
             </tr>
-          </thead>
-          <% else %>
-            <tr>
-              <th>Users</th>
-              <th>Reviews</th>
-              <th>Ratings</th>
-            </tr>
-          <% end %>
           </thead>
           <tbody>
             <% @product.review.order(created_at: :desc).each do |review| %>
