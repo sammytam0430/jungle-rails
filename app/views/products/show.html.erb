@@ -1,7 +1,24 @@
 <section class="products-show">
 
   <header class="page-header">
-    <h1><%= link_to @product.category.name, @product.category %> &raquo; <%= @product.name %></h1>
+    <h1>
+      <%= link_to @product.category.name, @product.category %> &raquo; <%= @product.name %>
+    </h1>
+    <h4>
+      <% if @product.review.count === 0 %>
+        <% 5.times do %>
+          <%= fa_icon('star-o') %>
+        <% end %>
+      <% else %>
+        <% average = @product.review.sum(:rating) / @product.review.count %>
+        <% average.times do %>
+          <%= fa_icon('star') %>
+        <% end %>
+        <% (5 - average).times do %>
+          <%= fa_icon('star-o') %>
+        <% end %>
+      <% end %>
+    </h4>
   </header>
 
   <article class="product-detail">
@@ -32,36 +49,37 @@
             <% if current_user %>
               <tr>
                 <th colspan="3">
-                  <%= form_for [@product, @review] do |form| %>
+                    <%= form_for [@product, @review] do |form| %>
 
-                    <% if form.object.errors.any? %>
-                      <div class="alert alert-danger">
-                        <strong>The following errors prevented saving:</strong>
-                        <ul>
-                          <% form.object.errors.full_messages.each do |error| %>
-                            <li><%= error %></li>
-                          <% end %>
-                        </ul>
-                      </div>
-                    <% end %>
-
-                    <div class="form-group">
-                      <%= form.label :review %>
-                      <%= form.text_area :description, class: 'form-control', placeholder: 'Let us know what you think' %>
-                    </div>
-                    <div class="form-group">
-                      <%= form.label :rating %>
-                      <%= form.select(:rating) do %>
-                        <% [5, 4, 3, 2, 1].each do |c| -%>
-                          <%= content_tag(:option, c, value: c) %>
-                        <% end %>
+                      <% if form.object.errors.any? %>
+                        <div class="alert alert-danger">
+                          <strong>The following errors prevented saving:</strong>
+                          <ul>
+                            <% form.object.errors.full_messages.each do |error| %>
+                              <li><%= error %></li>
+                            <% end %>
+                          </ul>
+                        </div>
                       <% end %>
-                    </div>
-                    <%= form.submit 'Submit', class: 'btn btn-primary' %>
-                  <% end %>
+
+                      <h4>Write A Review</h4>
+                      <div class="form-group">
+                        <%= form.text_area :description, class: 'form-control', placeholder: 'Let us know what you think' %>
+                      </div>
+                      <div class="form-group">
+                        <%= form.label :rating %>
+                        <%= form.select(:rating) do %>
+                          <% [5, 4, 3, 2, 1].each do |c| -%>
+                            <%= content_tag(:option, c, value: c) %>
+                          <% end %>
+                        <% end %>
+                      </div>
+                      <%= form.submit 'Submit', class: 'btn btn-primary' %>
+                    <% end %>
                 </th>
               </tr>
             <% end %>
+            <h3>Reviews</h3>
 
             <tr>
               <% if @product.review.count === 0 && current_user %>
@@ -74,7 +92,7 @@
                 </th>
               <% else %>
                 <th>Users</th>
-                <th>Reviews</th>
+                <th>Descriptions</th>
                 <th>Ratings</th>
               <% end %>
             </tr>

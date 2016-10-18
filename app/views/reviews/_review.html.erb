@@ -6,7 +6,12 @@
     <%= review.description %>
   </td>
   <td>
-    <%= review.rating %>
+    <% review.rating.times do %>
+      <%= fa_icon('star') %>
+    <% end %>
+    <% (5 - review.rating).times do %>
+      <%= fa_icon('star-o') %>
+    <% end %>
     <% if current_user && current_user.id === review.user_id %>
       <%= link_to review, data: {:confirm => 'Are you sure?'}, class: 'btn btn-xs btn-danger', :method => :delete do %>
         <%= fa_icon('trash-o') %>

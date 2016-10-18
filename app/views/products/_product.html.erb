@@ -2,8 +2,25 @@
   <header>
     <%= link_to product do %>
       <%= image_tag product.image.thumb, alt: product.name %>
-      <h4><%= product.name %></h4>
+      <h4>
+        <%= product.name %>
+      </h4>
     <% end %>
+    <div class="stars">
+      <% if product.review.count === 0 %>
+        <% 5.times do %>
+          <%= fa_icon('star-o') %>
+        <% end %>
+      <% else %>
+        <% average = product.review.sum(:rating) / product.review.count %>
+        <% average.times do %>
+          <%= fa_icon('star') %>
+        <% end %>
+        <% (5 - average).times do %>
+          <%= fa_icon('star-o') %>
+        <% end %>
+      <% end %>
+    </div>
   </header>
   <p class="description">
     <%= product.description %>
