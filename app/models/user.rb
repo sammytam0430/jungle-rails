@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
 
-  has_many :review
+  has_many :reviews
 
   validates :first_name, presence: true
   validates :last_name, presence: true
@@ -9,5 +9,14 @@ class User < ActiveRecord::Base
   validates :password_confirmation, presence: true
 
   has_secure_password
+
+  def self.authenticate_with_credentials(email, password)
+    user = User.find_by_email(email)
+    if user && user.authenticate(password)
+      user
+    else
+      nil
+    end
+  end
 
 end

@@ -5,12 +5,12 @@
       <%= link_to @product.category.name, @product.category %> &raquo; <%= @product.name %>
     </h1>
     <h4>
-      <% if @product.review.count === 0 %>
+      <% if @product.reviews.count === 0 %>
         <% 5.times do %>
           <%= fa_icon('star-o') %>
         <% end %>
       <% else %>
-        <% average = @product.review.sum(:rating) / @product.review.count %>
+        <% average = @product.reviews.sum(:rating) / @product.reviews.count %>
         <% average.times do %>
           <%= fa_icon('star') %>
         <% end %>
@@ -82,11 +82,11 @@
             <h3>Reviews</h3>
 
             <tr>
-              <% if @product.review.count === 0 && current_user %>
+              <% if @product.reviews.count === 0 && current_user %>
                 <th>
                   <h4>Be the first person to review this product!</h4>
                 </th>
-              <% elsif @product.review.count === 0 %>
+              <% elsif @product.reviews.count === 0 %>
                 <th>
                   <h4>Please login to review this product!</h4>
                 </th>
@@ -98,7 +98,7 @@
             </tr>
           </thead>
           <tbody>
-            <% @product.review.order(created_at: :desc).each do |review| %>
+            <% @product.reviews.order(created_at: :desc).each do |review| %>
               <%= render 'reviews/review', review: review %>
             <% end %>
           </tbody>

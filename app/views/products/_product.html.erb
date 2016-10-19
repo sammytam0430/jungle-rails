@@ -7,12 +7,12 @@
       </h4>
     <% end %>
     <div class="stars">
-      <% if product.review.count === 0 %>
+      <% if product.reviews.count === 0 %>
         <% 5.times do %>
           <%= fa_icon('star-o') %>
         <% end %>
       <% else %>
-        <% average = product.review.sum(:rating) / product.review.count %>
+        <% average = product.reviews.sum(:rating) / product.reviews.count %>
         <% average.times do %>
           <%= fa_icon('star') %>
         <% end %>
