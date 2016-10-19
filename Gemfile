@@ -62,7 +62,8 @@ end
 gem "letter_opener", :group => :development
 
 group :test do
-  gem 'rspec-rails', '~> 3.5'
+  gem 'capybara'
+  gem 'poltergeist'
   gem 'database_cleaner'
-  # ...
+  gem 'rspec-rails', '~> 3.5'
 end
