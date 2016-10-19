@@ -89,12 +89,12 @@ RSpec.describe User, type: :model do
   describe '.authenticate_with_credentials' do
 
     it "is valid to have spaces around email address" do
-      # user.save
+      user.save
       expect(User.authenticate_with_credentials('  mmouse@disney.com   ', '123456')).to_not be nil
     end
 
     it "is valid to have wrong case for email address" do
-      # user.save
+      user.save
       expect(User.authenticate_with_credentials('MMOUSE@DISNEY.COM', '123456')).to_not be nil
     end
 

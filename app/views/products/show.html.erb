@@ -63,17 +63,15 @@
                       <% end %>
 
                       <h4>Write A Review</h4>
+
                       <div class="form-group">
                         <%= form.text_area :description, class: 'form-control', placeholder: 'Let us know what you think' %>
                       </div>
                       <div class="form-group">
                         <%= form.label :rating %>
-                        <%= form.select(:rating) do %>
-                          <% [5, 4, 3, 2, 1].each do |c| -%>
-                            <%= content_tag(:option, c, value: c) %>
-                          <% end %>
-                        <% end %>
+                        <%= form.select :rating, options_for_select(1..5), { include_blank: 'Select rate' }, class: 'form-control' %>
                       </div>
+
                       <%= form.submit 'Submit', class: 'btn btn-primary' %>
                     <% end %>
                 </th>
