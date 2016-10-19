@@ -17,7 +17,7 @@ RSpec.feature "AddToCarts", type: :feature, js: true do
     end
   end
 
-  scenario "They can click on a product" do
+  scenario "They can add a product to cart" do
     # ACT
     visit root_path
     first('article.product').click_link('Add')
@@ -26,6 +26,8 @@ RSpec.feature "AddToCarts", type: :feature, js: true do
     # save_screenshot
 
     # VERIFY
-    expect(page).to have_css '.product-detail'
+    within ('#navbar') do
+      expect(page).to have_content 'My Cart (1)'
+    end
   end
 end

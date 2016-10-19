@@ -94,6 +94,7 @@
                 <th>Ratings</th>
               <% end %>
             </tr>
+
           </thead>
           <tbody>
             <% @product.reviews.order(created_at: :desc).each do |review| %>
