@@ -1,9 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  describe 'Validations' do
 
-    let(:user) { User.new(first_name: 'Mickey', last_name: 'Mouse', email: 'mmouse@disney.com', password: '123456', password_confirmation: '123456') }
+  let(:user) { User.new(first_name: 'Mickey', last_name: 'Mouse', email: 'mmouse@disney.com', password: '123456', password_confirmation: '123456') }
+
+  describe 'Validations' do
 
     it "is valid with valid attributes" do
       expect(user).to(be_valid)
@@ -78,7 +79,6 @@ RSpec.describe User, type: :model do
       user.password = '123'
       user.password_confirmation = '123'
       user.save
-      puts user.errors.full_messages
       expect(user).to be_invalid
       expect(user.errors.size).to eql(1)
       expect(user.errors.full_messages).to include 'Password is too short (minimum is 6 characters)'
@@ -87,6 +87,17 @@ RSpec.describe User, type: :model do
   end
 
   describe '.authenticate_with_credentials' do
-    # examples for this class method here
+
+    it "is valid to have spaces around email address" do
+      # user.save
+      expect(User.authenticate_with_credentials('  mmouse@disney.com   ', '123456')).to_not be nil
+    end
+
+    it "is valid to have wrong case for email address" do
+      # user.save
+      expect(User.authenticate_with_credentials('MMOUSE@DISNEY.COM', '123456')).to_not be nil
+    end
+
   end
+
 end

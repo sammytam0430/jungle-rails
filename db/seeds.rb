@@ -139,32 +139,32 @@ User.create!({
   first_name: "Sammy",
   last_name: "Tam",
   email: "sammytam2005@hotmail.com",
-  password: '123',
-  password_confirmation: '123'
+  password: '123456',
+  password_confirmation: '123456'
 })
 
 User.create!({
   first_name: "Robot",
   last_name: "One",
   email: "r.one@jungle.com",
-  password: '123',
-  password_confirmation: '123'
+  password: '123456',
+  password_confirmation: '123456'
 })
 
 User.create!({
   first_name: "Robot",
   last_name: "Two",
   email: "r.two@jungle.com",
-  password: '123',
-  password_confirmation: '123'
+  password: '123456',
+  password_confirmation: '123456'
 })
 
 User.create!({
   first_name: "Robot",
   last_name: "Three",
   email: "r.three@jungle.com",
-  password: '123',
-  password_confirmation: '123'
+  password: '123456',
+  password_confirmation: '123456'
 })
 
 ## REVIEWS
